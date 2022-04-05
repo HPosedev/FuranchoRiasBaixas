@@ -67,7 +67,8 @@ fun FuranchoList(){
 
 @Composable
 fun FuranchoItem(item:Furancho) {
-    Column(){
+    Column(modifier = Modifier.padding(4.dp)
+        .clip(RoundedCornerShape(10.dp))){
         Box(
             modifier = Modifier
                 .height(170.dp)
