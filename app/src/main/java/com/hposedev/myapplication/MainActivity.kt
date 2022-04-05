@@ -9,10 +9,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Shapes
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -23,6 +20,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.textInputServiceFactory
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,7 +40,12 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    FuranchoList()
+                    Scaffold(
+                        topBar = {
+                            TopAppBar (title = {Text(text = stringResource(id = R.string.app_name)) })}) {
+                                FuranchoList()
+                    }
+
                 }
             }
         }
@@ -67,7 +70,8 @@ fun FuranchoList(){
 
 @Composable
 fun FuranchoItem(item:Furancho) {
-    Column(modifier = Modifier.padding(4.dp)
+    Column(modifier = Modifier
+        .padding(4.dp)
         .clip(RoundedCornerShape(10.dp))){
         Box(
             modifier = Modifier
