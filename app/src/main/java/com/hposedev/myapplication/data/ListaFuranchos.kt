@@ -1,4 +1,6 @@
-package com.hposedev.myapplication
+package com.hposedev.myapplication.data
+
+import com.hposedev.myapplication.R
 
 class ListaFuranchos {
     companion object {
