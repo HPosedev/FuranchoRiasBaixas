@@ -22,8 +22,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.hposedev.myapplication.data.Furancho
 import com.hposedev.myapplication.data.ListaFuranchos
+import com.hposedev.myapplication.ui.theme.DetailedScreen
 import com.hposedev.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -66,6 +70,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun FuranchoList() {
+
     val furancho = ListaFuranchos.listaFuranchos
     LazyVerticalGrid(
         contentPadding = PaddingValues(4.dp),
@@ -130,6 +135,15 @@ fun OverflowMenu(content: @Composable () -> Unit) {
         onDismissRequest = { showMenu = false }
     ) {
         content()
+    }
+}
+@Composable
+fun navegation(){
+    val navController = rememberNavController()
+    NavHost(navController, startDestination = "Detailed"){
+        composable(route = "Detailed"){
+            DetailedScreen()
+        }
     }
 }
 
