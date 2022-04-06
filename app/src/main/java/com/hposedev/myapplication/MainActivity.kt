@@ -1,34 +1,32 @@
 package com.hposedev.myapplication
 
 import android.os.Bundle
-import android.view.RoundedCorner
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.*
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.outlined.List
+import androidx.compose.material.icons.outlined.MoreVert
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.textInputServiceFactory
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.core.content.res.ResourcesCompat
 import com.hposedev.myapplication.ui.theme.MyApplicationTheme
-import com.hposedev.myapplication.ui.theme.Shapes
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,8 +40,21 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Scaffold(
                         topBar = {
-                            TopAppBar (title = {Text(text = stringResource(id = R.string.app_name)) })}) {
-                                FuranchoList()
+                            TopAppBar(backgroundColor = MaterialTheme.colors.secondary, title = {
+                                Text(text = stringResource(id = R.string.app_name))
+                            }, actions = {
+                                //This icon will be shown on the top bar, on the left of the overflow menu
+                                OverflowMenu {
+                                    DropdownMenuItem(onClick = { /*TODO*/ }) {
+                                        Text("Favoritos")
+                                    }
+                                    DropdownMenuItem(onClick = { /*TODO*/ }) {
+                                        Text("Salir")
+                                    }
+                                }
+                            })
+                        }) {
+                        FuranchoList()
                     }
 
                 }
@@ -53,29 +64,31 @@ class MainActivity : ComponentActivity() {
 }
 
 
-
 @OptIn(ExperimentalFoundationApi::class)
 @Preview(showBackground = true)
 @Composable
-fun FuranchoList(){
+fun FuranchoList() {
     val furancho = ListaFuranchos.listaFuranchos
     LazyVerticalGrid(
         contentPadding = PaddingValues(4.dp),
-        cells = GridCells.Fixed(2)){
-            items(ListaFuranchos.listaFuranchos.size){index ->
-                FuranchoItem(furancho[index])
-            }
+        cells = GridCells.Fixed(2)
+    ) {
+        items(ListaFuranchos.listaFuranchos.size) { index ->
+            FuranchoItem(furancho[index])
+        }
     }
 }
 
 @Composable
-fun FuranchoItem(item:Furancho) {
-    Column(modifier = Modifier
-        .padding(4.dp)
-        .clip(RoundedCornerShape(10.dp))){
+fun FuranchoItem(item: Furancho) {
+    Column(
+        modifier = Modifier
+            .padding(4.dp)
+            .clip(RoundedCornerShape(10.dp))
+    ) {
         Box(
             modifier = Modifier
-                .height(170.dp)
+                .height(160.dp)
                 .fillMaxWidth()
         ) {
             Image(
@@ -95,8 +108,31 @@ fun FuranchoItem(item:Furancho) {
         )
         {
             Text(
-                text = item.name )
+                text = item.name
+            )
         }
     }
 }
+
+
+@Composable
+fun OverflowMenu(content: @Composable () -> Unit) {
+    var showMenu by remember { mutableStateOf(false) }
+
+    IconButton(onClick = {
+        showMenu = !showMenu
+    }) {
+        Icon(
+            imageVector = Icons.Filled.Menu,
+            contentDescription = null
+        )
+    }
+    DropdownMenu(
+        expanded = showMenu,
+        onDismissRequest = { showMenu = false }
+    ) {
+        content()
+    }
+}
+
 
