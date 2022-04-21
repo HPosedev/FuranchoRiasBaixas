@@ -1,6 +1,6 @@
-package com.hposedev.myapplication.data
+package com.hposedev.Furanchos2022.data
 
-import com.hposedev.myapplication.R
+import com.hposedev.Furanchos2022.R
 
 class ListaFuranchos {
     companion object {

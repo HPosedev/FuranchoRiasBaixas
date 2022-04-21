@@ -1,8 +1,5 @@
-package com.hposedev.myapplication
+package com.hposedev.Furanchos2022.ui.theme
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -19,52 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.hposedev.myapplication.data.Furancho
-import com.hposedev.myapplication.data.ListaFuranchos
-import com.hposedev.myapplication.ui.theme.DetailedScreen
-import com.hposedev.myapplication.ui.theme.MyApplicationTheme
-
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            MyApplicationTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Scaffold(
-                        topBar = {
-                            TopAppBar(backgroundColor = MaterialTheme.colors.secondary, title = {
-                                Text(text = stringResource(id = R.string.app_name))
-                            }, actions = {
-                                //This icon will be shown on the top bar, on the left of the overflow menu
-                                OverflowMenu {
-                                    DropdownMenuItem(onClick = { /*TODO*/ }) {
-                                        Text("Favoritos")
-                                    }
-                                    DropdownMenuItem(onClick = { /*TODO*/ }) {
-                                        Text("Salir")
-                                    }
-                                }
-                            })
-                        }) {
-                        FuranchoList()
-                    }
-
-                }
-            }
-        }
-    }
-}
-
+import com.hposedev.Furanchos2022.data.Furancho
+import com.hposedev.Furanchos2022.data.ListaFuranchos
 
 @OptIn(ExperimentalFoundationApi::class)
 @Preview(showBackground = true)
@@ -105,7 +63,7 @@ fun FuranchoItem(item: Furancho) {
             modifier = Modifier
                 .fillMaxWidth()
                 .background(MaterialTheme.colors.secondary)
-                .padding(16.dp),
+                .padding(8.dp),
             contentAlignment = Alignment.Center
 
         )
@@ -138,13 +96,11 @@ fun OverflowMenu(content: @Composable () -> Unit) {
     }
 }
 @Composable
-fun navegation(){
+fun navegation() {
     val navController = rememberNavController()
-    NavHost(navController, startDestination = "Detailed"){
-        composable(route = "Detailed"){
+    NavHost(navController, startDestination = "Detailed") {
+        composable(route = "Detailed") {
             DetailedScreen()
         }
     }
 }
-
-

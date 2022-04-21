@@ -1,4 +1,4 @@
-package com.hposedev.myapplication
+package com.hposedev.Furanchos2022
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

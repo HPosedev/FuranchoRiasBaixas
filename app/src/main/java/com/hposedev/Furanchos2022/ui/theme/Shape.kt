@@ -1,4 +1,4 @@
-package com.hposedev.myapplication.ui.theme
+package com.hposedev.Furanchos2022.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
