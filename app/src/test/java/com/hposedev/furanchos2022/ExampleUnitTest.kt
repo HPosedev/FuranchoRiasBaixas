@@ -1,4 +1,4 @@
-package com.hposedev.Furanchos2022
+package com.hposedev.furanchos2022
 
 import org.junit.Test
 

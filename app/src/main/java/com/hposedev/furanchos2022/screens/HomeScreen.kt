@@ -1,8 +1,9 @@
-package com.hposedev.Furanchos2022.ui.theme
+package com.hposedev.furanchos2022.ui.theme
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
@@ -16,18 +17,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.hposedev.Furanchos2022.data.Furancho
-import com.hposedev.Furanchos2022.data.ListaFuranchos
+import com.hposedev.furanchos2022.data.Furancho
+import com.hposedev.furanchos2022.data.ListaFuranchos
+import com.hposedev.furanchos2022.navigation.Screen
 
 @OptIn(ExperimentalFoundationApi::class)
-@Preview(showBackground = true)
 @Composable
-fun FuranchoList() {
+fun FuranchoList(navController: NavHostController) {
 
     val furancho = ListaFuranchos.listaFuranchos
     LazyVerticalGrid(
@@ -35,13 +35,13 @@ fun FuranchoList() {
         cells = GridCells.Fixed(2)
     ) {
         items(ListaFuranchos.listaFuranchos.size) { index ->
-            FuranchoItem(furancho[index])
+            FuranchoItem(furancho[index], navController)
         }
     }
 }
 
 @Composable
-fun FuranchoItem(item: Furancho) {
+fun FuranchoItem(item: Furancho, navController: NavController) {
     Column(
         modifier = Modifier
             .padding(4.dp)
@@ -51,6 +51,9 @@ fun FuranchoItem(item: Furancho) {
             modifier = Modifier
                 .height(160.dp)
                 .fillMaxWidth()
+                .clickable {
+                    navController.navigate(Screen.Detail.route)
+                }
         ) {
             Image(
                 painterResource(id = item.image),
@@ -95,12 +98,5 @@ fun OverflowMenu(content: @Composable () -> Unit) {
         content()
     }
 }
-@Composable
-fun navegation() {
-    val navController = rememberNavController()
-    NavHost(navController, startDestination = "Detailed") {
-        composable(route = "Detailed") {
-            DetailedScreen()
-        }
-    }
-}
+
+

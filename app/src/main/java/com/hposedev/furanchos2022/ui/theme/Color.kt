@@ -1,4 +1,4 @@
-package com.hposedev.Furanchos2022.ui.theme
+package com.hposedev.furanchos2022.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

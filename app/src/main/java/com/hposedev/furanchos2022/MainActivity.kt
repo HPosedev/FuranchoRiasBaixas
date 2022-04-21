@@ -1,4 +1,4 @@
-package com.hposedev.Furanchos2022
+package com.hposedev.furanchos2022
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,10 +7,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.hposedev.Furanchos2022.ui.theme.FuranchoList
-import com.hposedev.Furanchos2022.ui.theme.MyApplicationTheme
-import com.hposedev.Furanchos2022.ui.theme.OverflowMenu
-import com.hposedev.myapplication.R
+import androidx.navigation.compose.rememberNavController
+import com.hposedev.furanchos2022.ui.theme.MyApplicationTheme
+import com.hposedev.furanchos2022.ui.theme.OverflowMenu
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,13 +38,14 @@ class MainActivity : ComponentActivity() {
                                 }
                             })
                         }) {
-                        FuranchoList()
+                        Navigation(navController = rememberNavController())
                     }
 
                 }
             }
         }
     }
+
 }
 
 
