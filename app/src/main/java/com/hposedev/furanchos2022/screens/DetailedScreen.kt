@@ -20,7 +20,7 @@ import com.hposedev.furanchos2022.R
 
 @Preview
 @Composable
-fun DetailedScreen(navController: NavHostController) {
+fun DetailedScreen() {
     Column(
         modifier = Modifier
             .padding(4.dp)

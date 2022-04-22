@@ -18,7 +18,7 @@ fun Navigation(navController: NavHostController) {
             FuranchoList(navController = navController)
         }
         composable(route = Screen.Detail.route) {
-            DetailedScreen(navController = navController)
+            DetailedScreen()
         }
     }
 }
